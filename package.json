@@ -1,0 +1,29 @@
+{
+  "name": "@mongez/sitemap",
+  "version": "1.0.0",
+  "description": "A simple Sitemap generator for Node.js",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "jest ./src",
+    "test:coverage": "jest ./src --coverage",
+    "test:watch": "jest ./src --watch",
+    "test:file": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hassanzohdy/sitemap"
+  },
+  "dependencies": {
+    "@mongez/reinforcements": "^2.3.9",
+    "@mongez/fs": "^3.0.4"
+  },
+  "keywords": [
+    "sitemap",
+    "sitemap generator",
+    "sitemap xml",
+    "sitemap generator nodejs",
+    "sitemap generator node"
+  ],
+  "author": "hassanzohdy",
+  "license": "MIT"
+}
