@@ -1,13 +1,29 @@
 import { putFile } from "@mongez/fs";
 import { clone, ltrim } from "@mongez/reinforcements";
 
-export type SitemapRoute = {
+export type SitemapPath = {
+  /**
+   * The relative path to the website
+   */
   path: string;
-  lastmod?: Date | string;
-  changefreq?: string;
+  /**
+   * Last modification date
+   */
+  lastModified?: Date | string;
+  /**
+   * Change frequency
+   */
+  changeFrequency?: string;
+  /**
+   * Priority
+   */
   priority?: number;
+  /**
+   * Hreflang
+   * If you have multiple languages, you can add the hreflang, it will be used automatically if locale codes are set
+   */
   hreflang?: {
-    [key: string]: string;
+    [localeCOde: string]: string;
   };
 };
 
@@ -15,7 +31,7 @@ export class Sitemap {
   /**
    * Paths list
    */
-  protected paths: SitemapRoute[] = [];
+  protected paths: SitemapPath[] = [];
 
   /**
    * Whether to split the sitemap into multiple files
@@ -81,14 +97,14 @@ export class Sitemap {
   /**
    * Add new route
    */
-  public add(path: SitemapRoute | string) {
+  public add(path: SitemapPath | string) {
     this.paths.push(this.parsePath(path));
   }
 
   /**
    * Parse route
    */
-  protected parsePath(path: SitemapRoute | string) {
+  protected parsePath(path: SitemapPath | string) {
     if (typeof path === "string") {
       path = { path };
     }
@@ -192,12 +208,12 @@ class SiteMapGenerator {
   /**
    * urls list
    */
-  protected urls: SitemapRoute[] = [];
+  protected urls: SitemapPath[] = [];
 
   /**
    * Constructor
    */
-  public add(...urls: SitemapRoute[]) {
+  public add(...urls: SitemapPath[]) {
     for (const url of urls) {
       this.urls.push(url);
     }
@@ -222,16 +238,16 @@ class SiteMapGenerator {
       xml += `  <url>\n`;
       xml += `    <loc>${route.route}</loc>\n`;
 
-      if (route.lastmod) {
-        const lastMod =
-          typeof route.lastmod === "string"
-            ? route.lastmod
-            : route.lastmod.toISOString();
-        xml += `    <lastmod>${lastMod}</lastmod>\n`;
+      if (route.lastModified) {
+        const lastModified =
+          typeof route.lastModified === "string"
+            ? route.lastModified
+            : route.lastModified.toISOString();
+        xml += `    <lastmod>${lastModified}</lastmod>\n`;
       }
 
-      if (route.changefreq) {
-        xml += `    <changefreq>${route.changefreq}</changefreq>\n`;
+      if (route.changeFrequency) {
+        xml += `    <changefreq>${route.changeFrequency}</changefreq>\n`;
       }
 
       if (route.priority) {
