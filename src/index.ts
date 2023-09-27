@@ -281,7 +281,7 @@ class SiteMapGenerator {
 
     for (const route of routesList) {
       xml += `  <sitemap>\n`;
-      xml += `    <loc>${route.route}</loc>\n`;
+      xml += `    <loc>${route.path}</loc>\n`;
       xml += `  </sitemap>\n`;
     }
 
