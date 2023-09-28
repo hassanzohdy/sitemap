@@ -236,7 +236,7 @@ class SiteMapGenerator {
 
     for (const route of routesList) {
       xml += `  <url>\n`;
-      xml += `    <loc>${route.route}</loc>\n`;
+      xml += `    <loc>${route.path}</loc>\n`;
 
       if (route.lastModified) {
         const lastModified =
