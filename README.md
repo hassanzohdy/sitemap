@@ -102,3 +102,8 @@ Alternatively, you can use the `toXml` method.
 ```ts
 const xml = await sitemap.toXml();
 ```
+
+
+## ChangeLog
+
+- Fixed route path when generating sitemap.
