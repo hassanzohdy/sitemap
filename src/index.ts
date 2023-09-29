@@ -184,8 +184,8 @@ export class Sitemap {
     for (const localeCode of this.localeCodes) {
       const sitemap = new Sitemap(`${this.baseUrl}/${localeCode}`);
 
-      for (const route of this.paths) {
-        sitemap.add(route);
+      for (const path of this.paths) {
+        sitemap.add(path);
       }
 
       await sitemap.toXML();
